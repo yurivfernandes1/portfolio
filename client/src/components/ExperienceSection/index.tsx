@@ -19,32 +19,63 @@ import {
 
 const experiences = [
   {
-    company: "Empresa Atual",
-    period: "2022 - Presente",
-    role: "Senior Data Engineer",
+    company: "Vivo Vita",
+    period: "2023 - Presente",
+    role: "Analista de Dados",
     achievements: [
-      "Liderança em projetos de Data Lake",
-      "Desenvolvimento de pipelines ETL",
-      "Otimização de processos de BI"
+      "Projetos de análise e engenharia de dados",
+      "Desenvolvimento de soluções em SQL, Python e Power BI",
+      "Tomada de decisão estratégica baseada em dados"
     ]
   },
-  // Adicione mais experiências aqui
+  {
+    company: "VP6 IT",
+    period: "2022 - 2023",
+    role: "Analista de Dados/Desenvolvimento",
+    achievements: [
+      "Desenvolvimento de sistemas de planejamento e orçamento",
+      "Criação de relatórios em Python e Power BI",
+      "Entrega de insights estratégicos"
+    ]
+  },
+  {
+    company: "Statera TI",
+    period: "2020 - 2022",
+    role: "Analista de Processos/Dados",
+    achievements: [
+      "Desenvolvimento de projetos de Análise de Dados",
+      "Implementação de soluções em Power BI",
+      "Melhoria de processos internos"
+    ]
+  },
+  {
+    company: "Sonda IT",
+    period: "2011 - 2014",
+    role: "Líder de Service Desk",
+    achievements: [
+      "Gerenciamento de equipes de suporte técnico",
+      "Garantia de excelência no atendimento",
+      "Otimização de processos de resolução"
+    ]
+  }
 ];
 
 const certifications = [
   {
-    title: "Azure Data Engineer Associate",
-    issuer: "Microsoft",
-    date: "2023",
-    credential: "DP-203"
+    title: "Power BI Express",
+    issuer: "Xperian",
+    date: "2023"
   },
   {
-    title: "Power BI Data Analyst",
-    issuer: "Microsoft",
-    date: "2022",
-    credential: "PL-300"
+    title: "Sistemas de Informação",
+    issuer: "UNA",
+    date: "2021"
+  },
+  {
+    title: "Pós-graduação em Engenharia de Dados",
+    issuer: "Anhanguera",
+    date: "Em andamento"
   }
-  // Adicione mais certificações aqui
 ];
 
 export function ExperienceSection() {

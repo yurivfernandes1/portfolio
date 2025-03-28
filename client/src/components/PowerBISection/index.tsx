@@ -19,27 +19,27 @@ import {
 const cases = [
   {
     id: 1,
-    title: 'Dashboard Financeiro',
-    description: 'Dashboard completo para análise financeira com KPIs, gráficos e filtros dinâmicos.',
-    image: '/powerbi/financial.jpg',
-    techs: ['DAX', 'M Language', 'Direct Query'],
-    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=1&autoAuth=true&ctid=2',
+    title: 'Dashboard BUH Fashion',
+    description: 'Dashboard de análise de vendas integrado com API Totvs Moda',
+    image: 'https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/powerbi/projeto1.png',
+    techs: ['Power BI', 'API Integration', 'DAX'],
+    embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiNDI0OWJhNzYtMmEwOC00ZWU1LWExNzktOTc5ZTk5Y2QxZTgzIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9',
   },
   {
     id: 2,
-    title: 'Análise de Vendas',
-    description: 'Relatório interativo com análise detalhada de vendas e previsões.',
-    image: '/powerbi/sales.jpg',
-    techs: ['Power Query', 'DAX', 'Python Integration'],
-    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=2&autoAuth=true&ctid=2',
+    title: 'Dashboard MCD',
+    description: 'Dashboard de vendas e estoque baseado na API Linx',
+    image: 'https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/powerbi/projeto2.png',
+    techs: ['Power Query', 'XML Integration', 'DAX'],
+    embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiYWJjNjcyZWEtNDU1MS00ODk4LTg4MjAtYTAzMDg3ZTg0MThmIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9',
   },
   {
     id: 3,
-    title: 'RH Analytics',
-    description: 'Dashboard para análise de indicadores de RH e performance de equipes.',
-    image: '/powerbi/hr.jpg',
-    techs: ['DAX', 'Dataflows', 'Power Query'],
-    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=3&autoAuth=true&ctid=2',
+    title: 'Statera TI - Análise de Chamados',
+    description: 'Dashboard automatizado via APIs para análise de chamados e SLA',
+    image: 'https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/powerbi/projeto3.png',
+    techs: ['API Integration', 'Real-time Data', 'Performance Analytics'],
+    embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiYmUwMDAwMTQtMThlNi00NzU2LTk2MmEtMTAxYTIwZTU1ZWM0IiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9',
   }
 ];
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import {
   SectionContainer,
   Title,
@@ -135,14 +135,20 @@ export function ContactSection() {
         </Form>
 
         <SocialLinks>
-          <SocialLink href="mailto:seu.email@exemplo.com" target="_blank">
+          <SocialLink href="mailto:yuri.viana.fernandes@gmail.com" target="_blank">
             <FaEnvelope />
           </SocialLink>
-          <SocialLink href="https://github.com/seu-usuario" target="_blank">
+          <SocialLink href="https://github.com/yurivfernandes" target="_blank">
             <FaGithub />
           </SocialLink>
-          <SocialLink href="https://linkedin.com/in/seu-perfil" target="_blank">
+          <SocialLink href="https://linkedin.com/in/yurianalistabi" target="_blank">
             <FaLinkedin />
+          </SocialLink>
+          <SocialLink href="https://instagram.com/yurivfernandes" target="_blank">
+            <FaInstagram />
+          </SocialLink>
+          <SocialLink href="https://wa.me/5531987798823" target="_blank">
+            <FaWhatsapp />
           </SocialLink>
         </SocialLinks>
       </FormContainer>

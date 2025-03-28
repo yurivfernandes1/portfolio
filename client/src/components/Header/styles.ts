@@ -6,13 +6,9 @@ export const HeaderContainer = styled.header`
   left: 0;
   right: 0;
   height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  backdrop-filter: blur(10px);
-  background: ${({ theme }) => theme.glass.background};
-  z-index: 100;
+  z-index: 1000;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
 `;
 
 export const MobileMenuButton = styled.button`

@@ -14,13 +14,6 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skills = [
-  'Desenvolvedor Frontend',
-  'Analista de Dados Senior',
-  'Engenheiro de Dados',
-  'Power BI Specialist'
-];
-
 export function HeroSection() {
   const skillsRef = useRef<HTMLSpanElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +21,7 @@ export function HeroSection() {
   useEffect(() => {
     if (skillsRef.current) {
       const skillsAnimation = gsap.to(skillsRef.current, {
-        text: { value: skills, delimiter: " | " },
+        text: { value: ['Desenvolvedor Frontend', 'Analista de Dados Senior', 'Engenheiro de Dados', 'Power BI Specialist'], delimiter: " | " },
         duration: 3,
         repeat: -1,
         repeatDelay: 1,
@@ -61,12 +54,12 @@ export function HeroSection() {
         <HeroContent>
           <Title>Olá, eu sou o Yuri</Title>
           <Subtitle>
-            <SkillsText ref={skillsRef}>{skills[0]}</SkillsText>
+            <SkillsText ref={skillsRef}>Desenvolvedor Frontend</SkillsText>
           </Subtitle>
           <CTAButton href="#projetos">Ver Projetos</CTAButton>
         </HeroContent>
         <ProfileImage
-          src="/profile.jpg"
+          src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/fotos/hero.jpeg"
           alt="Yuri Fernandes"
           className="parallax"
           data-speed="0.1"

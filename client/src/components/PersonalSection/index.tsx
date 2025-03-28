@@ -27,7 +27,8 @@ const softSkills = [
 
 const objectives = [
   'Liderar projetos de transformação digital',
-  'Desenvolver soluções inovadoras em BI',
+  'Desenvolver soluções inovadoras em BI e Data Engineering',
+  'Contribuir para o crescimento através de análise de dados',
   'Compartilhar conhecimento e mentoria'
 ];
 
