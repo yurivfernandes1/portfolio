@@ -62,19 +62,22 @@ const experiences = [
 
 const certifications = [
   {
-    title: "Power BI Express",
-    issuer: "Xperian",
-    date: "2023"
-  },
-  {
     title: "Sistemas de Informação",
     issuer: "UNA",
-    date: "2021"
+    date: "2021",
+    description: "Graduação"
   },
   {
     title: "Pós-graduação em Engenharia de Dados",
     issuer: "Anhanguera",
-    date: "Em andamento"
+    date: "Em andamento",
+    description: "Pós-graduação"
+  },
+  {
+    title: "Power BI Express",
+    issuer: "Xperian",
+    date: "2023",
+    description: "Certificação Professional"
   }
 ];
 
@@ -146,12 +149,12 @@ export function ExperienceSection() {
         ))}
       </TimelineContainer>
 
-      <Title as="h3">Certificações</Title>
+      <Title as="h3">Formações</Title>
       <CertificationsGrid ref={certificationsRef}>
         {certifications.map((cert, index) => (
           <CertificationCard key={index}>
             <CertificationTitle>{cert.title}</CertificationTitle>
-            <CertificationIssuer>{cert.issuer}</CertificationIssuer>
+            <CertificationIssuer>{cert.description}</CertificationIssuer>
             <CertificationDate>{cert.date}</CertificationDate>
           </CertificationCard>
         ))}

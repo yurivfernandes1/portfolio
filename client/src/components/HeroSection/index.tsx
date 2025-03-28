@@ -21,7 +21,7 @@ export function HeroSection() {
   useEffect(() => {
     if (skillsRef.current) {
       const skillsAnimation = gsap.to(skillsRef.current, {
-        text: { value: ['Desenvolvedor Frontend', 'Analista de Dados Senior', 'Engenheiro de Dados', 'Power BI Specialist'], delimiter: " | " },
+        text: { value: ['Analista de Dados Senior', 'Engenheiro de Dados', 'Desenvolvedor Fullstack'], delimiter: " | " },
         duration: 3,
         repeat: -1,
         repeatDelay: 1,
@@ -54,7 +54,7 @@ export function HeroSection() {
         <HeroContent>
           <Title>Olá, eu sou o Yuri</Title>
           <Subtitle>
-            <SkillsText ref={skillsRef}>Desenvolvedor Frontend</SkillsText>
+            <SkillsText ref={skillsRef}>Engenheiro/Analista de Dados e Desenvolvedor FullStack</SkillsText>
           </Subtitle>
           <CTAButton href="#projetos">Ver Projetos</CTAButton>
         </HeroContent>

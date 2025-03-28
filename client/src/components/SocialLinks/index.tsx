@@ -1,3 +1,4 @@
+import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { SocialLinksContainer, SocialLink } from './styles';
 
 export function SocialLinks() {
@@ -8,21 +9,21 @@ export function SocialLinks() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        GitHub
+        <FaGithub />
       </SocialLink>
       <SocialLink 
         href="https://www.instagram.com/yurivfernandes" 
         target="_blank"
         rel="noopener noreferrer"
       >
-        Instagram
+        <FaInstagram />
       </SocialLink>
       <SocialLink 
         href="https://www.linkedin.com/in/yurianalistabi" 
         target="_blank"
         rel="noopener noreferrer"
       >
-        LinkedIn
+        <FaLinkedin />
       </SocialLink>
     </SocialLinksContainer>
   );
