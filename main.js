@@ -73,6 +73,63 @@ navLinks.forEach(link => {
   });
 });
 
+// Funcionalidade das abas
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    
+    // Atualiza os botões
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    // Atualiza o conteúdo
+    tabContents.forEach(content => {
+      content.classList.remove('active');
+      if (content.id === target) {
+        content.classList.add('active');
+      }
+    });
+  });
+});
+
+// Função para buscar e exibir projetos do GitHub
+async function fetchGitHubProjects() {
+  try {
+    const response = await fetch('https://api.github.com/users/yurivfernandes/repos?sort=updated&per_page=6');
+    const repos = await response.json();
+    
+    const githubGrid = document.querySelector('.github-grid');
+    githubGrid.innerHTML = '';
+    
+    repos.forEach(repo => {
+      const card = document.createElement('div');
+      card.className = 'project-card github-card';
+      
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description || 'Sem descrição disponível.'}</p>
+        <div class="github-card-footer">
+          <span class="github-lang">
+            <span class="lang-color ${repo.language?.toLowerCase()}"></span>
+            ${repo.language || 'N/A'}
+          </span>
+          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+        </div>
+      `;
+      
+      githubGrid.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Erro ao buscar projetos do GitHub:', error);
+  }
+}
+
+// Busca os projetos ao carregar a página
+fetchGitHubProjects();
+
 // Configuração das animações
 function setupAnimations() {
   // Home - animações imediatas na carga da página

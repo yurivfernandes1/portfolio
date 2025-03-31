@@ -53,93 +53,102 @@
     <section id="projetos">
         <h2>Projetos</h2>
 
-        <!-- Power BI Projects -->
-        <h3 class="projects-subtitle">Power BI</h3>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/public/projetos_pbi/dashbuh.png"
-                    alt="BUH Fashion Dashboard">
-                <h3>BUH Fashion Dashboard</h3>
-                <p>Dashboard de análise de vendas integrado com API Totvs Moda, proporcionando insights valiosos e
-                    auxiliando na tomada de decisões estratégicas.</p>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDI0OWJhNzYtMmEwOC00ZWU1LWExNzktOTc5ZTk5Y2QxZTgzIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
-                    target="_blank" rel="noopener noreferrer">Ver Projeto</a>
-            </div>
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/public/projetos_pbi/dashmcd.png"
-                    alt="MCD Dashboard">
-                <h3>MCD Dashboard</h3>
-                <p>Dashboard de vendas e estoque integrado com API Linx, permitindo análise detalhada de KPIs e
-                    monitoramento eficiente do estoque.</p>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYWJjNjcyZWEtNDU1MS00ODk4LTg4MjAtYTAzMDg3ZTg0MThmIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
-                    target="_blank" rel="noopener noreferrer">Ver Projeto</a>
-            </div>
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/public/projetos_pbi/dashstatera.png"
-                    alt="Statera TI Dashboard">
-                <h3>Statera TI Dashboard</h3>
-                <p>Dashboard de chamados e dispositivos com integração API, oferecendo visão abrangente da operação de
-                    atendimento aos clientes.</p>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiYmUwMDAwMTQtMThlNi00NzU2LTk2MmEtMTAxYTIwZTU1ZWM0IiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
-                    target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="powerbi">Power BI</button>
+            <button class="tab-btn" data-tab="github">GitHub</button>
+        </div>
+
+        <div class="tab-content active" id="powerbi">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/public/projetos_pbi/dashbuh.png"
+                        alt="BUH Fashion Dashboard">
+                    <h3>BUH Fashion Dashboard</h3>
+                    <p>Dashboard de análise de vendas integrado com API Totvs Moda, proporcionando insights valiosos e
+                        auxiliando na tomada de decisões estratégicas.</p>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiNDI0OWJhNzYtMmEwOC00ZWU1LWExNzktOTc5ZTk5Y2QxZTgzIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
+                        target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                </div>
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/public/projetos_pbi/dashmcd.png"
+                        alt="MCD Dashboard">
+                    <h3>MCD Dashboard</h3>
+                    <p>Dashboard de vendas e estoque integrado com API Linx, permitindo análise detalhada de KPIs e
+                        monitoramento eficiente do estoque.</p>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiYWJjNjcyZWEtNDU1MS00ODk4LTg4MjAtYTAzMDg3ZTg0MThmIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
+                        target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                </div>
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/public/projetos_pbi/dashstatera.png"
+                        alt="Statera TI Dashboard">
+                    <h3>Statera TI Dashboard</h3>
+                    <p>Dashboard de chamados e dispositivos com integração API, oferecendo visão abrangente da operação
+                        de
+                        atendimento aos clientes.</p>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiYmUwMDAwMTQtMThlNi00NzU2LTk2MmEtMTAxYTIwZTU1ZWM0IiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
+                        target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                </div>
             </div>
         </div>
 
-        <!-- GitHub Projects -->
-        <h3 class="projects-subtitle">GitHub</h3>
-        <div class="projects-grid github-grid">
-            <div class="project-card github-card">
-                <h3>Portfólio</h3>
-                <p>Portfólio pessoal desenvolvido com HTML, CSS e JavaScript, utilizando GSAP para animações.</p>
-                <div class="github-card-footer">
-                    <span class="github-lang"><span class="lang-color"></span>HTML/CSS/JS</span>
-                    <a href="https://github.com/yurivfernandes/portifolio" target="_blank" rel="noopener noreferrer">Ver
-                        no GitHub</a>
+        <div class="tab-content" id="github">
+            <div class="projects-grid github-grid">
+                <div class="project-card github-card">
+                    <h3>Portfólio</h3>
+                    <p>Portfólio pessoal desenvolvido com HTML, CSS e JavaScript, utilizando GSAP para animações.</p>
+                    <div class="github-card-footer">
+                        <span class="github-lang"><span class="lang-color"></span>HTML/CSS/JS</span>
+                        <a href="https://github.com/yurivfernandes/portifolio" target="_blank"
+                            rel="noopener noreferrer">Ver
+                            no GitHub</a>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card github-card">
-                <h3>API-Suite</h3>
-                <p>Conjunto de APIs desenvolvidas em Python para integração e automação de processos.</p>
-                <div class="github-card-footer">
-                    <span class="github-lang"><span class="lang-color python"></span>Python</span>
-                    <a href="https://github.com/yurivfernandes/api-suite" target="_blank" rel="noopener noreferrer">Ver
-                        no GitHub</a>
+                <div class="project-card github-card">
+                    <h3>API-Suite</h3>
+                    <p>Conjunto de APIs desenvolvidas em Python para integração e automação de processos.</p>
+                    <div class="github-card-footer">
+                        <span class="github-lang"><span class="lang-color python"></span>Python</span>
+                        <a href="https://github.com/yurivfernandes/api-suite" target="_blank"
+                            rel="noopener noreferrer">Ver
+                            no GitHub</a>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card github-card">
-                <h3>Data Analysis</h3>
-                <p>Projetos de análise de dados usando Python, Pandas e bibliotecas de visualização.</p>
-                <div class="github-card-footer">
-                    <span class="github-lang"><span class="lang-color python"></span>Python</span>
-                    <a href="https://github.com/yurivfernandes/data-analysis" target="_blank"
-                        rel="noopener noreferrer">Ver no GitHub</a>
+                <div class="project-card github-card">
+                    <h3>Data Analysis</h3>
+                    <p>Projetos de análise de dados usando Python, Pandas e bibliotecas de visualização.</p>
+                    <div class="github-card-footer">
+                        <span class="github-lang"><span class="lang-color python"></span>Python</span>
+                        <a href="https://github.com/yurivfernandes/data-analysis" target="_blank"
+                            rel="noopener noreferrer">Ver no GitHub</a>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card github-card">
-                <h3>ETL Pipeline</h3>
-                <p>Pipeline de ETL para processamento e transformação de dados em larga escala.</p>
-                <div class="github-card-footer">
-                    <span class="github-lang"><span class="lang-color python"></span>Python</span>
-                    <a href="https://github.com/yurivfernandes/etl-pipeline" target="_blank"
-                        rel="noopener noreferrer">Ver no GitHub</a>
+                <div class="project-card github-card">
+                    <h3>ETL Pipeline</h3>
+                    <p>Pipeline de ETL para processamento e transformação de dados em larga escala.</p>
+                    <div class="github-card-footer">
+                        <span class="github-lang"><span class="lang-color python"></span>Python</span>
+                        <a href="https://github.com/yurivfernandes/etl-pipeline" target="_blank"
+                            rel="noopener noreferrer">Ver no GitHub</a>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card github-card">
-                <h3>Dashboard App</h3>
-                <p>Aplicação web para visualização de dashboards interativos com React.</p>
-                <div class="github-card-footer">
-                    <span class="github-lang"><span class="lang-color js"></span>JavaScript</span>
-                    <a href="https://github.com/yurivfernandes/dashboard-app" target="_blank"
-                        rel="noopener noreferrer">Ver no GitHub</a>
+                <div class="project-card github-card">
+                    <h3>Dashboard App</h3>
+                    <p>Aplicação web para visualização de dashboards interativos com React.</p>
+                    <div class="github-card-footer">
+                        <span class="github-lang"><span class="lang-color js"></span>JavaScript</span>
+                        <a href="https://github.com/yurivfernandes/dashboard-app" target="_blank"
+                            rel="noopener noreferrer">Ver no GitHub</a>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card github-card">
-                <h3>ML Models</h3>
-                <p>Coleção de modelos de Machine Learning para diferentes casos de uso.</p>
-                <div class="github-card-footer">
-                    <span class="github-lang"><span class="lang-color python"></span>Python</span>
-                    <a href="https://github.com/yurivfernandes/ml-models" target="_blank" rel="noopener noreferrer">Ver
-                        no GitHub</a>
+                <div class="project-card github-card">
+                    <h3>ML Models</h3>
+                    <p>Coleção de modelos de Machine Learning para diferentes casos de uso.</p>
+                    <div class="github-card-footer">
+                        <span class="github-lang"><span class="lang-color python"></span>Python</span>
+                        <a href="https://github.com/yurivfernandes/ml-models" target="_blank"
+                            rel="noopener noreferrer">Ver
+                            no GitHub</a>
+                    </div>
                 </div>
             </div>
         </div>
