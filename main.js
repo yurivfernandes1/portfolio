@@ -73,7 +73,7 @@ navLinks.forEach(link => {
   });
 });
 
-// Funcionalidade das abas
+// Funcionalidade das abas com animações
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
 
@@ -85,11 +85,43 @@ tabBtns.forEach(btn => {
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
-    // Atualiza o conteúdo
-    tabContents.forEach(content => {
-      content.classList.remove('active');
-      if (content.id === target) {
-        content.classList.add('active');
+    // Animação de saída
+    gsap.to('.tab-content.active', {
+      opacity: 0,
+      y: -20,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete: () => {
+        // Atualiza o conteúdo
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === target) {
+            content.classList.add('active');
+            // Animação de entrada
+            gsap.fromTo(content, 
+              { opacity: 0, y: 20 },
+              { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.5,
+                ease: 'power2.out'
+              }
+            );
+            
+            // Anima os cards do conteúdo ativo
+            const cards = content.querySelectorAll('.project-card');
+            gsap.fromTo(cards, 
+              { opacity: 0, y: 30 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: 'power2.out'
+              }
+            );
+          }
+        });
       }
     });
   });
