@@ -3,8 +3,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Garantir que todos os elementos estejam visíveis por padrão
 document.addEventListener('DOMContentLoaded', () => {
-  // Garante que nenhum elemento skills esteja inicialmente invisível
-  gsap.set('.skill-card, .skill-level', { opacity: 1, clearProps: "all" });
+  // Garante que TODOS os elementos skills estejam sempre visíveis
+  gsap.set('.skill-card, .skill-level', { opacity: 1, width: '100%', clearProps: 'scale,transform' });
+  
+  // Inicializar as barras de skills imediatamente para dispositivos móveis
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  if (isMobile) {
+    document.querySelectorAll('.skill-level').forEach(skillLevel => {
+      const percentage = skillLevel.getAttribute('data-percentage') || "85%";
+      skillLevel.style.width = percentage;
+    });
+  }
   
   gsap.set('body', { visibility: 'visible' });
   

@@ -7,12 +7,12 @@
     "scripts": {
         "start": "http-server",
         "dev": "vite --host",
-        "build": "bash build.sh",
+        "prebuild": "npm install --no-package-lock",
+        "build": "npm install && bash build.sh",
         "preview": "vite preview"
     },
     "dependencies": {
-        "gsap": "^3.12.7",
-        "three": "^0.159.0"
+        "gsap": "^3.12.7"
     },
     "devDependencies": {
         "http-server": "^14.1.1",
