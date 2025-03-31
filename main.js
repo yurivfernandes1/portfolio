@@ -143,34 +143,20 @@ tabBtns.forEach(btn => {
   });
 });
 
-// Função para carregar o token do GitHub sem depender do arquivo .env
+// Função simplificada para carregar o token do GitHub sem depender do dotenv
 async function loadGitHubToken() {
   try {
-    // Primeiro, tentamos obter do processo (em ambiente de produção)
+    // Em ambiente de produção, usamos a variável de ambiente da aplicação
     if (typeof process !== 'undefined' && process.env && process.env.GITHUB_TOKEN) {
       return process.env.GITHUB_TOKEN;
     }
-
-    // Se não houver no processo, tentamos obter do localStorage
-    const storedToken = localStorage.getItem('GITHUB_TOKEN');
-    if (storedToken) {
-      console.log('Token do GitHub carregado do localStorage');
-      return storedToken;
-    }
-
-    // Como alternativa, podemos solicitar ao usuário (apenas em ambiente de desenvolvimento)
-    /* 
-    // Descomente caso queira habilitar esta opção
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      const userToken = prompt('Insira seu token GitHub para evitar limites de requisição:');
-      if (userToken) {
-        localStorage.setItem('GITHUB_TOKEN', userToken);
-        return userToken;
-      }
-    }
-    */
-
-    console.warn('Token do GitHub não encontrado. As requisições podem ser limitadas pela API.');
+    
+    // Em ambiente de desenvolvimento, tentamos obter do localStorage
+    const token = localStorage.getItem('GITHUB_TOKEN');
+    if (token) return token;
+    
+    // Retornar null se não encontrar
+    console.warn('Token do GitHub não encontrado. Configure o token para evitar limites de requisição da API.');
     return null;
   } catch (error) {
     console.error('Erro ao carregar token do GitHub:', error);
@@ -185,7 +171,7 @@ async function fetchGitHubProjects() {
     // Exibir indicador de carregamento
     githubGrid.innerHTML = '<div class="loading-indicator"><i class="fas fa-spinner fa-spin"></i> Carregando repositórios...</div>';
     
-    const token = loadGitHubToken();
+    const token = await loadGitHubToken();
     
     // Configuração do cabeçalho com autenticação obrigatória
     const headers = {
