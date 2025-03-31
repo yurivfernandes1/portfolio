@@ -323,7 +323,9 @@ fetchGitHubProjects();
 // Animações para a seção Skills
 function setupSkillsAnimations() {
   const skillCards = document.querySelectorAll('.skill-card');
+  const githubStats = document.querySelectorAll('.github-stats-card');
   
+  // Animação responsiva para os skill cards
   gsap.from(skillCards, {
     scrollTrigger: {
       trigger: '#skills',
@@ -359,6 +361,56 @@ function setupSkillsAnimations() {
         });
       }
     });
+  });
+  
+  // Animação para os GitHub stats cards
+  gsap.from(githubStats, {
+    scrollTrigger: {
+      trigger: '.github-stats-container',
+      start: 'top bottom-=50',
+    },
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power2.out'
+  });
+  
+  // Adicionar media query para versão mobile das animações
+  const mm = gsap.matchMedia();
+  
+  mm.add("(max-width: 768px)", () => {
+    // Ajustes específicos para mobile
+    gsap.from(skillCards, {
+      scrollTrigger: {
+        trigger: '#skills',
+        start: 'top center+=100',
+      },
+      opacity: 0,
+      y: 20, // Menor deslocamento em dispositivos móveis
+      duration: 0.6, // Animação mais rápida em dispositivos móveis
+      stagger: 0.08,
+      ease: 'power2.out',
+      overwrite: true
+    });
+    
+    // GitHub stats têm aparência diferente em mobile
+    gsap.from(githubStats, {
+      scrollTrigger: {
+        trigger: '.github-stats-container',
+        start: 'top bottom-=20',
+      },
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      overwrite: true
+    });
+    
+    return () => {
+      // Limpeza quando o media query não se aplica mais
+    };
   });
 }
 

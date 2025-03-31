@@ -902,6 +902,7 @@ a, button {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -936,4 +937,100 @@ a, button {
   background: linear-gradient(90deg, var(--primary) 0%, #00BFFF 100%);
   border-radius: 5px;
   transition: width 1.5s ease-out;
+}
+
+/* Estilos para GitHub Stats cards */
+.github-stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-top: 3rem; /* Aumentando o espaçamento superior de 2rem para 3rem */
+}
+
+.github-stats-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 207, 213, 0.1);
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.github-stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-glow);
+}
+
+.github-stats-card img {
+  width: 100%;
+  border-radius: 5px;
+  transition: transform 0.5s ease;
+}
+
+.github-stats-card:hover img {
+  transform: scale(1.02);
+}
+
+/* Ajustes responsivos para celulares */
+@media (max-width: 768px) {
+  #skills {
+    padding: 60px 15px;
+  }
+  
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .skill-card {
+    padding: 15px;
+  }
+  
+  .github-stats-container {
+    flex-direction: column;
+    padding: 0 10px;
+    margin-top: 2rem;
+  }
+  
+  .github-stats-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .skill-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .skill-bar {
+    height: 8px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .skill-card {
+    padding: 12px;
+  }
+  
+  .github-stats-container {
+    gap: 1rem;
+  }
+  
+  .github-stats-card {
+    padding: 0.7rem;
+  }
 }
