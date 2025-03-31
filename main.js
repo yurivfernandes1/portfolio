@@ -3,15 +3,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Garantir que todos os elementos estejam visíveis por padrão
 document.addEventListener('DOMContentLoaded', () => {
-  // Garante que TODOS os elementos skills estejam sempre visíveis
-  gsap.set('.skill-card, .skill-level', { opacity: 1, width: '100%', clearProps: 'scale,transform' });
+  // Garante que os elementos skills estejam visíveis mas NÃO força width
+  gsap.set('.skill-card', { opacity: 1, clearProps: 'scale,transform' });
   
-  // Inicializar as barras de skills imediatamente para dispositivos móveis
+  // Inicializar as barras de skills para dispositivos móveis
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   if (isMobile) {
     document.querySelectorAll('.skill-level').forEach(skillLevel => {
-      const percentage = skillLevel.getAttribute('data-percentage') || "85%";
-      skillLevel.style.width = percentage;
+      const percentage = skillLevel.getAttribute('data-percentage');
+      if (percentage) {
+        skillLevel.style.width = percentage;
+      }
     });
   }
   
@@ -337,24 +339,17 @@ function setupSkillsAnimations() {
   const skillCards = document.querySelectorAll('.skill-card');
   const githubStats = document.querySelectorAll('.github-stats-card');
   
-  // Garantir que os cards e barras de progresso sejam visíveis inicialmente
-  gsap.set(skillCards, { opacity: 1, y: 0, clearProps: "all" });
+  // Garantir que os cards sejam visíveis inicialmente mas NÃO as barras de progresso
+  gsap.set(skillCards, { opacity: 1, y: 0 });
   
-  // Inicializar imediatamente todas as barras de skills
+  // Definir todas as barras de skills para começarem em width 0
   document.querySelectorAll('.skill-level').forEach(skillLevel => {
-    // Garantir que as barras não comecem invisíveis ou com width 0
-    if (skillLevel.style.width && skillLevel.style.width !== "0px" && skillLevel.style.width !== "0%") {
-      // Preservar o valor original da largura
-      skillLevel.setAttribute('data-width', skillLevel.style.width);
-    } else if (skillLevel.hasAttribute('data-percentage')) {
-      // Se tivermos um atributo de porcentagem personalizado, usamos isso
-      const percentage = skillLevel.getAttribute('data-percentage');
-      skillLevel.style.width = percentage;
+    // Salvar o valor da porcentagem como atributo
+    const percentage = skillLevel.getAttribute('data-percentage');
+    if (percentage) {
       skillLevel.setAttribute('data-width', percentage);
-    } else {
-      // Valor padrão como fallback
-      skillLevel.style.width = "85%";
-      skillLevel.setAttribute('data-width', "85%");
+      // Começar com width 0
+      gsap.set(skillLevel, { width: 0 });
     }
   });
   
@@ -381,15 +376,17 @@ function setupSkillsAnimations() {
     // Animar as barras de progresso diretamente
     document.querySelectorAll('.skill-level').forEach(skillLevel => {
       const targetWidth = skillLevel.getAttribute('data-width');
-      gsap.fromTo(skillLevel,
-        { width: "0%" },
-        { 
-          width: targetWidth,
-          duration: 1,
-          ease: "power1.out",
-          delay: 0.5
-        }
-      );
+      if (targetWidth) {
+        gsap.fromTo(skillLevel,
+          { width: "0%" },
+          { 
+            width: targetWidth,
+            duration: 1,
+            ease: "power1.out",
+            delay: 0.5
+          }
+        );
+      }
     });
     
     // Animar GitHub stats cards sem usar ScrollTrigger em mobile
@@ -425,8 +422,8 @@ function setupSkillsAnimations() {
       const skillLevel = card.querySelector('.skill-level');
       if (!skillLevel) return; // Segurança adicional
       
-      // Obter largura salva anteriormente
-      const targetWidth = skillLevel.getAttribute('data-width');
+      // Obter largura do atributo data-percentage
+      const targetWidth = skillLevel.getAttribute('data-percentage');
       
       // Começar com width zero
       gsap.set(skillLevel, { width: 0 });
@@ -468,10 +465,6 @@ function setupAnimations() {
   const skillsSection = document.getElementById('skills');
   if (skillsSection) {
     console.log("Inicializando animações para a seção skills");
-    
-    // Garantir que as skills estejam visíveis por padrão
-    const skillCards = document.querySelectorAll('.skill-card');
-    gsap.set(skillCards, { opacity: 1, clearProps: "all" });
     
     // Configurar as animações de skills
     setupSkillsAnimations();
@@ -658,14 +651,17 @@ window.addEventListener('load', () => {
   // Atualiza a navegação inicialmente
   updateNavigation();
   
-  // Garantir que as barras de skills sejam visíveis caso carregue diretamente na seção
+  // Garantir que as barras de skills sejam animadas corretamente
   if (initialSection === 'skills' || isInViewport(document.getElementById('skills'))) {
     const skillLevels = document.querySelectorAll('.skill-level');
     skillLevels.forEach(skillLevel => {
-      // Garantir que as barras não estejam com width 0
-      if (!skillLevel.style.width || skillLevel.style.width === "0px" || skillLevel.style.width === "0%") {
-        const percentage = skillLevel.getAttribute('data-percentage') || "85%";
-        skillLevel.style.width = percentage;
+      const percentage = skillLevel.getAttribute('data-percentage');
+      if (percentage) {
+        // Aplicar a animação da barra para o valor correto
+        gsap.fromTo(skillLevel,
+          { width: 0 },
+          { width: percentage, duration: 1, ease: 'power2.out' }
+        );
       }
     });
   }
