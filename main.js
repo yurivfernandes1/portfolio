@@ -3,6 +3,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Garantir que todos os elementos estejam visíveis por padrão
 document.addEventListener('DOMContentLoaded', () => {
+  // Garante que nenhum elemento skills esteja inicialmente invisível
+  gsap.set('.skill-card, .skill-level', { opacity: 1, clearProps: "all" });
+  
   gsap.set('body', { visibility: 'visible' });
   
   // Inicializa as animações com delay para garantir que tudo seja carregado
@@ -325,227 +328,309 @@ function setupSkillsAnimations() {
   const skillCards = document.querySelectorAll('.skill-card');
   const githubStats = document.querySelectorAll('.github-stats-card');
   
-  // Animação responsiva para os skill cards
-  gsap.from(skillCards, {
-    scrollTrigger: {
-      trigger: '#skills',
-      start: 'top center+=100',
-    },
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'power2.out'
+  // Garantir que os cards e barras de progresso sejam visíveis inicialmente
+  gsap.set(skillCards, { opacity: 1, y: 0, clearProps: "all" });
+  
+  // Inicializar imediatamente todas as barras de skills
+  document.querySelectorAll('.skill-level').forEach(skillLevel => {
+    // Garantir que as barras não comecem invisíveis ou com width 0
+    if (skillLevel.style.width && skillLevel.style.width !== "0px" && skillLevel.style.width !== "0%") {
+      // Preservar o valor original da largura
+      skillLevel.setAttribute('data-width', skillLevel.style.width);
+    } else if (skillLevel.hasAttribute('data-percentage')) {
+      // Se tivermos um atributo de porcentagem personalizado, usamos isso
+      const percentage = skillLevel.getAttribute('data-percentage');
+      skillLevel.style.width = percentage;
+      skillLevel.setAttribute('data-width', percentage);
+    } else {
+      // Valor padrão como fallback
+      skillLevel.style.width = "85%";
+      skillLevel.setAttribute('data-width', "85%");
+    }
   });
   
-  // Animar as barras de progresso quando entrarem na tela
-  skillCards.forEach(card => {
-    const skillLevel = card.querySelector('.skill-level');
-    const widthValue = skillLevel.style.width;
+  // Detectar se estamos em mobile
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  
+  // Em dispositivos móveis, aplicar animações mais simples e diretas
+  if (isMobile) {
+    console.log("Aplicando animações para dispositivos móveis");
     
-    // Armazenar o valor original da largura
-    const originalWidth = widthValue;
-    
-    // Iniciar com largura zero
-    gsap.set(skillLevel, { width: 0 });
-    
-    ScrollTrigger.create({
-      trigger: card,
-      start: 'top bottom-=100',
-      once: true,
-      onEnter: () => {
-        gsap.to(skillLevel, {
-          width: originalWidth,
-          duration: 1.5,
-          ease: 'power2.out'
-        });
+    // Animar cards de skill diretamente sem ScrollTrigger
+    gsap.fromTo(skillCards, 
+      { opacity: 0.5, y: 15 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.5, 
+        stagger: 0.08,
+        ease: 'power1.out',
+        delay: 0.2
       }
+    );
+    
+    // Animar as barras de progresso diretamente
+    document.querySelectorAll('.skill-level').forEach(skillLevel => {
+      const targetWidth = skillLevel.getAttribute('data-width');
+      gsap.fromTo(skillLevel,
+        { width: "0%" },
+        { 
+          width: targetWidth,
+          duration: 1,
+          ease: "power1.out",
+          delay: 0.5
+        }
+      );
     });
-  });
-  
-  // Animação para os GitHub stats cards
-  gsap.from(githubStats, {
-    scrollTrigger: {
-      trigger: '.github-stats-container',
-      start: 'top bottom-=50',
-    },
-    opacity: 0,
-    y: 40,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power2.out'
-  });
-  
-  // Adicionar media query para versão mobile das animações
-  const mm = gsap.matchMedia();
-  
-  mm.add("(max-width: 768px)", () => {
-    // Ajustes específicos para mobile
+    
+    // Animar GitHub stats cards sem usar ScrollTrigger em mobile
+    if (githubStats.length > 0) {
+      gsap.fromTo(githubStats,
+        { opacity: 0, y: 15 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.6, 
+          stagger: 0.1,
+          ease: 'power1.out',
+          delay: 0.5
+        }
+      );
+    }
+  } else {
+    // Para desktop, usar as animações baseadas em ScrollTrigger
     gsap.from(skillCards, {
       scrollTrigger: {
         trigger: '#skills',
         start: 'top center+=100',
       },
       opacity: 0,
-      y: 20, // Menor deslocamento em dispositivos móveis
-      duration: 0.6, // Animação mais rápida em dispositivos móveis
-      stagger: 0.08,
-      ease: 'power2.out',
-      overwrite: true
-    });
-    
-    // GitHub stats têm aparência diferente em mobile
-    gsap.from(githubStats, {
-      scrollTrigger: {
-        trigger: '.github-stats-container',
-        start: 'top bottom-=20',
-      },
-      opacity: 0,
-      y: 20,
-      duration: 0.6,
+      y: 30,
+      duration: 0.8,
       stagger: 0.1,
-      ease: 'power2.out',
-      overwrite: true
+      ease: 'power2.out'
     });
     
-    return () => {
-      // Limpeza quando o media query não se aplica mais
-    };
-  });
+    // Animar as barras de progresso quando entrarem na tela
+    skillCards.forEach(card => {
+      const skillLevel = card.querySelector('.skill-level');
+      if (!skillLevel) return; // Segurança adicional
+      
+      // Obter largura salva anteriormente
+      const targetWidth = skillLevel.getAttribute('data-width');
+      
+      // Começar com width zero
+      gsap.set(skillLevel, { width: 0 });
+      
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top bottom-=100',
+        once: true,
+        onEnter: () => {
+          gsap.to(skillLevel, {
+            width: targetWidth,
+            duration: 1.5,
+            ease: 'power2.out'
+          });
+        }
+      });
+    });
+    
+    // Animação para os GitHub stats cards
+    if (githubStats.length > 0) {
+      gsap.from(githubStats, {
+        scrollTrigger: {
+          trigger: '.github-stats-container',
+          start: 'top bottom-=50',
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+      });
+    }
+  }
 }
 
 // Adicionar o setup de animações de skills na função principal de animações
 function setupAnimations() {
+  // Verificar se a seção de skills existe
+  const skillsSection = document.getElementById('skills');
+  if (skillsSection) {
+    console.log("Inicializando animações para a seção skills");
+    
+    // Garantir que as skills estejam visíveis por padrão
+    const skillCards = document.querySelectorAll('.skill-card');
+    gsap.set(skillCards, { opacity: 1, clearProps: "all" });
+    
+    // Configurar as animações de skills
+    setupSkillsAnimations();
+  }
+  
   // Animações para a seção Sobre
   const sobreSection = document.querySelector('#sobre');
-  
-  gsap.from('#sobre', {
-    scrollTrigger: {
-      trigger: '#sobre',
-      start: 'top center+=100',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 0,
-    y: 50,
-    duration: 0.8,
-    ease: 'power2.out'
-  });
+  if (sobreSection) {
+    gsap.from('#sobre', {
+      scrollTrigger: {
+        trigger: '#sobre',
+        start: 'top center+=100',
+        toggleActions: 'play none none reverse'
+      },
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
 
-  gsap.from('#sobre .about-text p', {
-    scrollTrigger: {
-      trigger: '#sobre',
-      start: 'top center+=100',
-    },
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power2.out'
-  });
+    gsap.from('#sobre .about-text p', {
+      scrollTrigger: {
+        trigger: '#sobre',
+        start: 'top center+=100',
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out'
+    });
 
-  gsap.from('#sobre .about-photo', {
-    scrollTrigger: {
-      trigger: '#sobre',
-      start: 'top center+=100',
-    },
-    opacity: 0,
-    x: 50,
-    duration: 0.8,
-    ease: 'power2.out'
-  });
+    gsap.from('#sobre .about-photo', {
+      scrollTrigger: {
+        trigger: '#sobre',
+        start: 'top center+=100',
+      },
+      opacity: 0,
+      x: 50,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+  }
 
   // Home - animações imediatas na carga da página
-  gsap.from('.hero img', {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power2.out'
-  });
+  const heroImg = document.querySelector('.hero img');
+  const heroTitle = document.querySelector('.hero h1');
+  const heroText = document.querySelector('.hero p');
   
-  gsap.from('.hero h1', {
-    y: 20,
-    opacity: 0,
-    duration: 0.6,
-    delay: 0.3,
-    ease: 'power2.out'
-  });
+  if (heroImg) {
+    gsap.from(heroImg, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+  }
   
-  gsap.from('.hero p', {
-    y: 20,
-    opacity: 0,
-    duration: 0.6,
-    delay: 0.5,
-    ease: 'power2.out'
-  });
-
-  // Adicionar animações para a seção de habilidades técnicas
-  setupSkillsAnimations();
+  if (heroTitle) {
+    gsap.from(heroTitle, {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.3,
+      ease: 'power2.out'
+    });
+  }
+  
+  if (heroText) {
+    gsap.from(heroText, {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.5,
+      ease: 'power2.out'
+    });
+  }
   
   // Configurar animações iniciais para as barras de skills caso a página carregue diretamente nessa seção
   if (window.location.hash === '#skills') {
     setTimeout(() => {
       document.querySelectorAll('.skill-card .skill-level').forEach(skillLevel => {
-        const originalWidth = skillLevel.style.width;
-        gsap.fromTo(skillLevel, 
-          { width: 0 }, 
-          { width: originalWidth, duration: 1.5, ease: 'power2.out' }
-        );
+        const originalWidth = skillLevel.getAttribute('data-width') || skillLevel.style.width;
+        if (originalWidth) {
+          gsap.fromTo(skillLevel, 
+            { width: 0 }, 
+            { width: originalWidth, duration: 1.5, ease: 'power2.out' }
+          );
+        }
       });
-    }, 500);
+    }, 300);
   }
   
   // Projetos - animação baseada em scroll
-  ScrollTrigger.batch('.project-card', {
-    onEnter: batch => gsap.to(batch, {
-      opacity: 1,
-      y: 0,
-      stagger: 0.15,
-      duration: 0.6,
-      ease: 'power2.out',
-      overwrite: true
-    }),
-    start: 'top bottom-=100',
-    once: true
-  });
+  const projectCards = document.querySelectorAll('.project-card');
+  if (projectCards.length > 0) {
+    ScrollTrigger.batch(projectCards, {
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: true
+      }),
+      start: 'top bottom-=100',
+      once: true
+    });
+  }
   
   // Experiência - animação baseada em scroll
-  ScrollTrigger.batch('.experience-photo', {
-    onEnter: batch => gsap.to(batch, {
-      opacity: 1,
-      x: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-      overwrite: true
-    }),
-    start: 'top bottom-=100',
-    once: true
-  });
+  const experiencePhotos = document.querySelectorAll('.experience-photo');
+  if (experiencePhotos.length > 0) {
+    ScrollTrigger.batch(experiencePhotos, {
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        x: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: true
+      }),
+      start: 'top bottom-=100',
+      once: true
+    });
+  }
   
-  ScrollTrigger.batch('.experience-item', {
-    onEnter: batch => gsap.to(batch, {
-      opacity: 1,
-      x: 0,
-      stagger: 0.15,
-      duration: 0.6,
-      ease: 'power2.out',
-      overwrite: true
-    }),
-    start: 'top bottom-=100',
-    once: true
-  });
+  const experienceItems = document.querySelectorAll('.experience-item');
+  if (experienceItems.length > 0) {
+    ScrollTrigger.batch(experienceItems, {
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        x: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: true
+      }),
+      start: 'top bottom-=100',
+      once: true
+    });
+  }
   
   // Contato - animação baseada em scroll
-  ScrollTrigger.batch('.contact-info', {
-    onEnter: batch => gsap.to(batch, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-      overwrite: true
-    }),
-    start: 'top bottom-=100',
-    once: true
-  });
+  const contactInfo = document.querySelectorAll('.contact-info');
+  if (contactInfo.length > 0) {
+    ScrollTrigger.batch(contactInfo, {
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: true
+      }),
+      start: 'top bottom-=100',
+      once: true
+    });
+  }
+}
+
+// Função para verificar se um elemento está visível na janela
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
 }
 
 // Inicialização
@@ -563,6 +648,18 @@ window.addEventListener('load', () => {
   
   // Atualiza a navegação inicialmente
   updateNavigation();
+  
+  // Garantir que as barras de skills sejam visíveis caso carregue diretamente na seção
+  if (initialSection === 'skills' || isInViewport(document.getElementById('skills'))) {
+    const skillLevels = document.querySelectorAll('.skill-level');
+    skillLevels.forEach(skillLevel => {
+      // Garantir que as barras não estejam com width 0
+      if (!skillLevel.style.width || skillLevel.style.width === "0px" || skillLevel.style.width === "0%") {
+        const percentage = skillLevel.getAttribute('data-percentage') || "85%";
+        skillLevel.style.width = percentage;
+      }
+    });
+  }
 });
 
 // Corrigir comportamento dos links das redes sociais
