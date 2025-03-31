@@ -149,6 +149,44 @@ fetchGitHubProjects();
 
 // Configuração das animações
 function setupAnimations() {
+  // Animações para a seção Sobre
+  const sobreSection = document.querySelector('#sobre');
+  
+  gsap.from('#sobre', {
+    scrollTrigger: {
+      trigger: '#sobre',
+      start: 'top center+=100',
+      toggleActions: 'play none none reverse'
+    },
+    opacity: 0,
+    y: 50,
+    duration: 0.8,
+    ease: 'power2.out'
+  });
+
+  gsap.from('#sobre .about-text p', {
+    scrollTrigger: {
+      trigger: '#sobre',
+      start: 'top center+=100',
+    },
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power2.out'
+  });
+
+  gsap.from('#sobre .about-photo', {
+    scrollTrigger: {
+      trigger: '#sobre',
+      start: 'top center+=100',
+    },
+    opacity: 0,
+    x: 50,
+    duration: 0.8,
+    ease: 'power2.out'
+  });
+
   // Home - animações imediatas na carga da página
   gsap.from('.hero img', {
     y: 30,
@@ -172,21 +210,7 @@ function setupAnimations() {
     delay: 0.5,
     ease: 'power2.out'
   });
-  
-  // Correção: Garantindo que os links de redes sociais no hero permaneçam visíveis
-  gsap.from('.hero .social-links a', {
-    y: 15,
-    opacity: 0,
-    stagger: 0.1,
-    duration: 0.4,
-    delay: 0.7,
-    ease: 'power1.out',
-    onComplete: () => {
-      // Força visibilidade após a animação
-      gsap.set('.hero .social-links a', { opacity: 1, y: 0, clearProps: "all" });
-    }
-  });
-  
+
   // Projetos - animação baseada em scroll
   ScrollTrigger.batch('.project-card', {
     onEnter: batch => gsap.to(batch, {

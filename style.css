@@ -99,9 +99,13 @@ nav a:hover, nav a.active {
     text-shadow: 0 0 10px var(--primary-glow);
 }
 
+#home {
+    min-height: 70vh;
+    padding-top: 120px;
+}
+
 section {
-    min-height: 100vh;
-    padding: 100px 20px;
+    padding: 80px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,9 +117,7 @@ section {
 section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    background: linear-gradient(to right, #fff, var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
     position: relative;
 }
 
@@ -133,8 +135,14 @@ section h2::after {
 }
 
 .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    max-width: 800px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
 }
 
 .hero img {
@@ -142,24 +150,83 @@ section h2::after {
     height: 200px;
     border-radius: 50%;
     border: 3px solid var(--primary);
-    box-shadow: 0 0 20px var(--primary-glow);
+    box-shadow: 0 0 25px var(--primary-glow);
     margin-bottom: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     object-fit: cover;
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 20px var(--primary-glow);
+    }
+    50% {
+        box-shadow: 0 0 30px var(--primary-glow);
+    }
+    100% {
+        box-shadow: 0 0 20px var(--primary-glow);
+    }
 }
 
 .hero img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px var(--primary);
+    transform: scale(1.03);
+    box-shadow: 0 0 35px var(--primary-glow);
+}
+
+.data-analytics-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+.data-analytics-bg svg {
+    position: absolute;
+    transition: transform 0.3s ease;
+}
+
+.data-analytics-bg .chart1 {
+    top: 15%;
+    left: 10%;
+    width: 180px;
+    transform: rotate(-15deg);
+}
+
+.data-analytics-bg .chart2 {
+    bottom: 20%;
+    right: 10%;
+    width: 150px;
+    transform: rotate(10deg);
+}
+
+.data-analytics-bg .dots {
+    top: 25%;
+    right: 20%;
+    width: 120px;
+}
+
+.data-analytics-bg .lines {
+    bottom: 30%;
+    left: 15%;
+    width: 100px;
+}
+
+@media (max-width: 768px) {
+    .data-analytics-bg svg {
+        transform: scale(0.7);
+    }
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, #fff, var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 5px rgba(0, 207, 213, 0.3);
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary-glow);
 }
 
 .hero p {
@@ -689,4 +756,57 @@ a, button {
 
 .github-stats i {
     color: var(--primary);
+}
+
+.about-content {
+    display: flex;
+    max-width: 1200px;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-photo {
+    flex: 0 0 300px;
+    height: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px var(--primary-glow);
+    border: 2px solid var(--primary);
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.about-photo:hover img {
+    transform: scale(1.05);
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ddd;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .about-photo {
+        width: 100%;
+        height: 400px;
+    }
 }
