@@ -184,6 +184,9 @@ async function fetchGitHubProjects() {
     
     if (token) {
       headers['Authorization'] = `token ${token}`;
+      console.log('Usando autenticação para API do GitHub');
+    } else {
+      console.warn('Token do GitHub não encontrado. As requisições serão limitadas pela API.');
     }
     
     // Buscar todos os repositórios do usuário
@@ -253,13 +256,13 @@ async function fetchGitHubProjects() {
     // Para cada repositório, buscar detalhes adicionais incluindo as linguagens
     for (const repo of repos) {
       try {
-        // Obter detalhes do repositório
+        // Obter detalhes do repositório - usando os headers com autenticação
         const repoDetailsResponse = await fetch(`https://api.github.com/repos/${repo.full_name}`, {
           headers: headers
         });
         const repoDetails = await repoDetailsResponse.json();
         
-        // Obter as linguagens do repositório
+        // Obter as linguagens do repositório - usando os headers com autenticação
         const languagesResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/languages`, {
           headers: headers
         });
