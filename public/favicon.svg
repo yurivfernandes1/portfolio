@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- Letra Y estilizada -->
+    <path d="M25 20 Q35 35 40 45 L60 20 M40 45 L40 80" fill="none" stroke="#00cfd5" stroke-width="8"
+        stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 3px #00cfd5)" />
+
+    <!-- Letra F estilizada -->
+    <path d="M65 20 L65 80 M65 20 Q65 20 90 20 M65 45 Q65 45 85 45" fill="none" stroke="#00cfd5" stroke-width="8"
+        stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 3px #00cfd5)" />
+</svg>
