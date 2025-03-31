@@ -1,19 +1,145 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Yuri Fernandes | Portifólio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuri Fernandes - Portfólio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="description" content="Portfólio de Yuri Fernandes - Analista de Dados e Desenvolvedor">
 </head>
 
 <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <nav>
+        <div class="nav-content">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#experiencia">Experiência</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="header-social">
+                <a href="https://github.com/yurivfernandes/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yurianalistabi/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/yurivfernandes/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5531987798823" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="hero">
+            <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/fotos/hero.jpeg"
+                alt="Yuri Fernandes">
+            <h1>Yuri Fernandes</h1>
+            <p>Analista de Dados & Desenvolvedor</p>
+            <div class="social-links">
+                <a href="https://github.com/yurivfernandes/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yurianalistabi/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/yurivfernandes/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <h2>Projetos Power BI</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/dashboards/Projeto1.png"
+                    alt="BUH Fashion Dashboard">
+                <h3>BUH Fashion Dashboard</h3>
+                <p>Dashboard de análise de vendas integrado com API Totvs Moda, proporcionando insights valiosos e
+                    auxiliando na tomada de decisões estratégicas.</p>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNDI0OWJhNzYtMmEwOC00ZWU1LWExNzktOTc5ZTk5Y2QxZTgzIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
+                    target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+            </div>
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/dashboards/Projeto2.png"
+                    alt="MCD Dashboard">
+                <h3>MCD Dashboard</h3>
+                <p>Dashboard de vendas e estoque integrado com API Linx, permitindo análise detalhada de KPIs e
+                    monitoramento eficiente do estoque.</p>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYWJjNjcyZWEtNDU1MS00ODk4LTg4MjAtYTAzMDg3ZTg0MThmIiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
+                    target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+            </div>
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/dashboards/Projeto3.png"
+                    alt="Statera TI Dashboard">
+                <h3>Statera TI Dashboard</h3>
+                <p>Dashboard de chamados e dispositivos com integração API, oferecendo visão abrangente da operação de
+                    atendimento aos clientes.</p>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYmUwMDAwMTQtMThlNi00NzU2LTk2MmEtMTAxYTIwZTU1ZWM0IiwidCI6ImU0MWIzZGQzLWIzMWEtNDU1MC1hNzg0LWY3YjBmYTZhMGIwNiJ9"
+                    target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <h2>Experiência</h2>
+        <div class="experience-content">
+            <div class="experience-photo">
+                <img src="https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/fotos/perfil.jpg"
+                    alt="Yuri Fernandes">
+            </div>
+            <div class="experience-items">
+                <div class="experience-item">
+                    <h3>Vivo Vita</h3>
+                    <p class="role">Analista de Dados (Atual)</p>
+                    <p>Atuando com projetos de análise e engenharia de dados usando SQL, Python e Power BI. Responsável
+                        por transformar dados em insights valiosos para os negócios e impactar diretamente a tomada de
+                        decisão estratégica da empresa.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>VP6 IT</h3>
+                    <p class="role">Analista de Dados/Desenvolvimento de Sistemas (2022-2025)</p>
+                    <p>Desenvolvimento de sistemas de planejamento e orçamento, construção de relatórios em Python e
+                        Power BI. Entrega de insights de alto nível e padrão para diversas empresas.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Statera TI</h3>
+                    <p class="role">Analista de Processos/Dados (2020-2022)</p>
+                    <p>Desenvolvimento de projetos de Análise de Dados avançados e melhoria de processos. Primeiro
+                        contato com Power BI e início do desenvolvimento de projetos de análise para diversos clientes.
+                    </p>
+                </div>
+                <div class="experience-item">
+                    <h3>Sonda IT</h3>
+                    <p class="role">Líder de equipe de Service Desk (2011-2014)</p>
+                    <p>Gerenciamento de equipes e processos de suporte técnico, garantindo excelência no atendimento e
+                        resolução de problemas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <div class="contact-info">
+            <a href="https://wa.me/5531987798823" target="_blank" rel="noopener noreferrer"><i
+                    class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+5531987798823"><i class="fas fa-phone"></i> (31) 98779-8823</a>
+            <div class="social-links">
+                <a href="https://github.com/yurivfernandes/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yurianalistabi/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/yurivfernandes/" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
 </body>
 
 </html>

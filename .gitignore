@@ -1,17 +1,18 @@
-# Dependencies
-node_modules
-.pnp
-.pnp.js
+# Dependências
+node_modules/
+.pnpm-store/
 
-# Production
-build
-dist
-dist-ssr
+# Arquivos de build
+dist/
+build/
+.output/
 
-# Testing
-coverage
+# Arquivos de cache
+.cache/
+.vite/
+.parcel-cache/
 
-# Environment files
+# Arquivos de ambiente
 .env
 .env.local
 .env.development.local
@@ -23,15 +24,21 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
+logs
+*.log
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Sistema operacional
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+*.pem
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos de configuração local
+*.local
