@@ -179,7 +179,45 @@ async function fetchGitHubProjects() {
 // Busca os projetos ao carregar a página
 fetchGitHubProjects();
 
-// Configuração das animações
+// Animações para a seção Skills
+function setupSkillsAnimations() {
+  const skillCards = document.querySelectorAll('.skill-card');
+  
+  gsap.from(skillCards, {
+    scrollTrigger: {
+      trigger: '#skills',
+      start: 'top center+=100',
+    },
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: 'power2.out'
+  });
+  
+  // Animar as barras de progresso quando entrarem na tela
+  skillCards.forEach(card => {
+    const skillLevel = card.querySelector('.skill-level');
+    const widthValue = skillLevel.style.width;
+    
+    gsap.set(skillLevel, { width: 0 });
+    
+    ScrollTrigger.create({
+      trigger: card,
+      start: 'top bottom-=100',
+      once: true,
+      onEnter: () => {
+        gsap.to(skillLevel, {
+          width: widthValue,
+          duration: 1.5,
+          ease: 'power2.out'
+        });
+      }
+    });
+  });
+}
+
+// Adicionar o setup de animações de skills na função principal de animações
 function setupAnimations() {
   // Animações para a seção Sobre
   const sobreSection = document.querySelector('#sobre');
@@ -243,6 +281,9 @@ function setupAnimations() {
     ease: 'power2.out'
   });
 
+  // Adicionar animações para a seção de habilidades técnicas
+  setupSkillsAnimations();
+  
   // Projetos - animação baseada em scroll
   ScrollTrigger.batch('.project-card', {
     onEnter: batch => gsap.to(batch, {
