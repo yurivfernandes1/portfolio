@@ -11,11 +11,11 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "gsap": "^3.12.5"
+        "gsap": "^3.12.7"
     },
     "devDependencies": {
         "http-server": "^14.1.1",
-        "vite": "^4.5.1"
+        "vite": "^4.5.2"
     },
     "engines": {
         "node": ">=16.0.0"

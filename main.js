@@ -167,15 +167,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   // NÃO chamar fetchGitHubProjects aqui para evitar chamadas desnecessárias à API
 });
 
-// Função para carregar a variável de ambiente do token do GitHub
-function loadGitHubToken() {
+// Função para carregar o token do GitHub
+async function loadGitHubToken() {
   try {
+    // Em ambiente de produção, usamos a variável de ambiente definida no Vite
+    if (typeof process !== 'undefined' && process.env && process.env.GITHUB_TOKEN) {
+      return process.env.GITHUB_TOKEN;
+    }
+    
     // Tenta buscar o token do localStorage (para desenvolvimento)
     const token = localStorage.getItem('GITHUB_TOKEN');
     if (token) return token;
     
-    // Em produção, o token deve ser configurado pelo servidor
-    // Esta é uma solução temporária para desenvolvimento
+    // Aviso quando não encontra o token
     console.warn('Token do GitHub não encontrado. Configure o token para evitar limites de requisição da API.');
     return null;
   } catch (error) {

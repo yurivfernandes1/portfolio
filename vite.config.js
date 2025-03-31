@@ -1,8 +1,4 @@
 import { defineConfig } from 'vite'
-import dotenv from 'dotenv'
-
-// Carrega variáveis de ambiente do arquivo .env
-dotenv.config()
 
 export default defineConfig({
   root: '.',
@@ -12,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          gsap: ['gsap', 'gsap/ScrollTrigger']
+          gsap: ['gsap']
         }
       }
     },
@@ -23,10 +19,10 @@ export default defineConfig({
     open: true
   },
   optimizeDeps: {
-    include: ['gsap', 'gsap/ScrollTrigger']
+    include: ['gsap']
   },
-  // Expor as variáveis de ambiente para o cliente
+  // Configurações para variáveis de ambiente
   define: {
-    'process.env.GITHUB_TOKEN': JSON.stringify(process.env.GITHUB_TOKEN)
+    'process.env.GITHUB_TOKEN': JSON.stringify(process.env.GITHUB_TOKEN || '')
   }
 })
