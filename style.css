@@ -669,3 +669,24 @@ a, button {
     display: block;
     opacity: 1;
 }
+
+.github-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.github-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.github-stats i {
+    color: var(--primary);
+}

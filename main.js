@@ -98,8 +98,20 @@ tabBtns.forEach(btn => {
 // Função para buscar e exibir projetos do GitHub
 async function fetchGitHubProjects() {
   try {
-    const response = await fetch('https://api.github.com/users/yurivfernandes/repos?sort=updated&per_page=6');
-    const repos = await response.json();
+    // Primeiro, buscar repositórios fixados
+    const pinnedResponse = await fetch('https://api.github.com/users/yurivfernandes/starred');
+    const starredRepos = await pinnedResponse.json();
+    
+    // Depois, buscar todos os repositórios
+    const reposResponse = await fetch('https://api.github.com/users/yurivfernandes/repos?sort=updated');
+    const allRepos = await reposResponse.json();
+    
+    // Combinar e priorizar repositórios favoritados
+    const repos = [...starredRepos, ...allRepos]
+      .filter((repo, index, self) => 
+        index === self.findIndex((r) => r.id === repo.id)
+      )
+      .slice(0, 6);
     
     const githubGrid = document.querySelector('.github-grid');
     githubGrid.innerHTML = '';
@@ -111,6 +123,11 @@ async function fetchGitHubProjects() {
       card.innerHTML = `
         <h3>${repo.name}</h3>
         <p>${repo.description || 'Sem descrição disponível.'}</p>
+        <div class="github-stats">
+          <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+          <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+          <span><i class="fas fa-eye"></i> ${repo.watchers_count}</span>
+        </div>
         <div class="github-card-footer">
           <span class="github-lang">
             <span class="lang-color ${repo.language?.toLowerCase()}"></span>
