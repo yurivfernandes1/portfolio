@@ -313,3 +313,15 @@ window.addEventListener('load', () => {
   // Atualiza a navegação inicialmente
   updateNavigation();
 });
+
+// Corrigir comportamento dos links das redes sociais
+const socialLinks = document.querySelectorAll('.header-social a');
+socialLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault(); // Garante que o comportamento padrão seja evitado
+    const url = link.getAttribute('href');
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer'); // Abre o link em uma nova aba
+    }
+  });
+});
