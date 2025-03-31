@@ -1,6 +1,3 @@
-// Inicialização do GSAP ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
-
 // Garantir que todos os elementos estejam visíveis por padrão
 document.addEventListener('DOMContentLoaded', () => {
   gsap.set('body', { visibility: 'visible' });
