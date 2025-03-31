@@ -130,52 +130,190 @@ tabBtns.forEach(btn => {
   });
 });
 
+// Carregar token do GitHub do arquivo .env
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    // Em ambiente de produção, você pode usar variáveis de ambiente do servidor
+    // Para ambiente de desenvolvimento, podemos ler o arquivo .env diretamente
+    const response = await fetch('/.env');
+    if (response.ok) {
+      const text = await response.text();
+      // Extrair o token do arquivo .env
+      const match = text.match(/GITHUB_TOKEN=([^\s]+)/);
+      if (match && match[1]) {
+        const token = match[1].trim();
+        // Armazenar no localStorage para uso posterior
+        localStorage.setItem('GITHUB_TOKEN', token);
+        console.log('Token do GitHub carregado com sucesso');
+      }
+    }
+  } catch (error) {
+    console.error('Não foi possível carregar o token do GitHub:', error);
+  }
+  
+  // Agora que o token está (possivelmente) carregado, buscar os projetos
+  fetchGitHubProjects();
+});
+
+// Função para carregar a variável de ambiente do token do GitHub
+function loadGitHubToken() {
+  try {
+    // Tenta buscar o token do localStorage (para desenvolvimento)
+    const token = localStorage.getItem('GITHUB_TOKEN');
+    if (token) return token;
+    
+    // Em produção, o token deve ser configurado pelo servidor
+    // Esta é uma solução temporária para desenvolvimento
+    console.warn('Token do GitHub não encontrado. Configure o token para evitar limites de requisição da API.');
+    return null;
+  } catch (error) {
+    console.error('Erro ao carregar token do GitHub:', error);
+    return null;
+  }
+}
+
 // Função para buscar e exibir projetos do GitHub
 async function fetchGitHubProjects() {
   try {
-    // Primeiro, buscar repositórios fixados
-    const pinnedResponse = await fetch('https://api.github.com/users/yurivfernandes/starred');
-    const starredRepos = await pinnedResponse.json();
+    const token = loadGitHubToken();
     
-    // Depois, buscar todos os repositórios
-    const reposResponse = await fetch('https://api.github.com/users/yurivfernandes/repos?sort=updated');
-    const allRepos = await reposResponse.json();
+    // Configuração do cabeçalho com autenticação se o token estiver disponível
+    const headers = {
+      'Accept': 'application/vnd.github.v3+json'
+    };
     
-    // Combinar e priorizar repositórios favoritados
-    const repos = [...starredRepos, ...allRepos]
-      .filter((repo, index, self) => 
-        index === self.findIndex((r) => r.id === repo.id)
-      )
-      .slice(0, 6);
+    if (token) {
+      headers['Authorization'] = `token ${token}`;
+    }
+    
+    // Buscar todos os repositórios do usuário
+    const response = await fetch('https://api.github.com/users/yurivfernandes/repos', {
+      headers: headers
+    });
+    
+    // Verificar se estamos atingindo o limite de taxa da API
+    const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
+    if (rateLimitRemaining && parseInt(rateLimitRemaining) < 10) {
+      console.warn(`Aviso: Restam apenas ${rateLimitRemaining} requisições à API do GitHub. Considere adicionar autenticação.`);
+    }
+    
+    let repos = await response.json();
+    
+    // Verificar se a resposta contém um erro
+    if (repos.message && repos.message.includes('API rate limit exceeded')) {
+      throw new Error('Limite de requisições da API do GitHub excedido. Tente novamente mais tarde ou configure a autenticação.');
+    }
+    
+    // Ordenar os repositórios pelo número de estrelas (do maior para o menor)
+    repos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+    
+    // Limitar a 6 repositórios
+    repos = repos.slice(0, 6);
     
     const githubGrid = document.querySelector('.github-grid');
     githubGrid.innerHTML = '';
     
-    repos.forEach(repo => {
-      const card = document.createElement('div');
-      card.className = 'project-card github-card';
-      
-      card.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p>${repo.description || 'Sem descrição disponível.'}</p>
-        <div class="github-stats">
-          <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
-          <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
-          <span><i class="fas fa-eye"></i> ${repo.watchers_count}</span>
-        </div>
-        <div class="github-card-footer">
-          <span class="github-lang">
-            <span class="lang-color ${repo.language?.toLowerCase()}"></span>
-            ${repo.language || 'N/A'}
-          </span>
-          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
-        </div>
-      `;
-      
-      githubGrid.appendChild(card);
-    });
+    // Verificar se temos repositórios para exibir
+    if (repos.length === 0) {
+      githubGrid.innerHTML = '<div class="project-card github-card"><h3>Nenhum repositório encontrado</h3></div>';
+      return;
+    }
+    
+    // Mapear linguagens para suas cores correspondentes
+    const languageColors = {
+      "JavaScript": "#f1e05a",
+      "TypeScript": "#3178c6",
+      "HTML": "#e34c26",
+      "CSS": "#563d7c",
+      "Python": "#3572A5",
+      "Java": "#b07219",
+      "C": "#555555",
+      "C++": "#f34b7d",
+      "C#": "#178600",
+      "Ruby": "#701516",
+      "PHP": "#4F5D95",
+      "Go": "#00ADD8",
+      "Swift": "#ffac45",
+      "Kotlin": "#A97BFF",
+      "Dart": "#00B4AB",
+      "Rust": "#DEA584",
+      "Shell": "#89e051",
+      "Objective-C": "#438eff",
+      "Vue": "#41b883",
+      "Elixir": "#6e4a7e",
+      "Scala": "#c22d40",
+      "Haskell": "#5e5086",
+      "R": "#198CE7",
+      "Perl": "#0298c3",
+      "Lua": "#000080",
+      "Jupyter Notebook": "#DA5B0B",
+      "Assembly": "#6E4C13"
+    };
+    
+    // Para cada repositório, buscar detalhes adicionais incluindo as linguagens
+    for (const repo of repos) {
+      try {
+        // Obter detalhes do repositório
+        const repoDetailsResponse = await fetch(`https://api.github.com/repos/${repo.full_name}`, {
+          headers: headers
+        });
+        const repoDetails = await repoDetailsResponse.json();
+        
+        // Obter as linguagens do repositório
+        const languagesResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/languages`, {
+          headers: headers
+        });
+        const languages = await languagesResponse.json();
+        
+        // Converter linguagens em um array e pegar as 3 principais
+        const languagesArray = Object.keys(languages);
+        const topLanguages = languagesArray.slice(0, 3);
+        
+        const card = document.createElement('div');
+        card.className = 'project-card github-card';
+        
+        // HTML com múltiplas linguagens
+        let languagesHTML = '';
+        if (topLanguages.length > 0) {
+          languagesHTML = topLanguages.map(lang => {
+            const color = languageColors[lang] || "#858585"; // cor padrão se não encontrar
+            return `<span class="github-lang">
+              <span class="lang-color" style="background-color: ${color};"></span>
+              ${lang}
+            </span>`;
+          }).join(' ');
+        } else {
+          languagesHTML = '<span class="github-lang">N/A</span>';
+        }
+        
+        card.innerHTML = `
+          <h3>${repoDetails.name}</h3>
+          <p>${repoDetails.description || 'Sem descrição disponível.'}</p>
+          <div class="github-stats">
+            <span><i class="fas fa-star"></i> ${repoDetails.stargazers_count}</span>
+            <span><i class="fas fa-code-branch"></i> ${repoDetails.forks_count}</span>
+            <span><i class="fas fa-eye"></i> ${repoDetails.watchers_count}</span>
+          </div>
+          <div class="github-card-footer">
+            <div class="github-languages">
+              ${languagesHTML}
+            </div>
+            <a href="${repoDetails.html_url}" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+          </div>
+        `;
+        
+        githubGrid.appendChild(card);
+      } catch (detailError) {
+        console.error('Erro ao buscar detalhes do repositório:', detailError);
+      }
+    }
   } catch (error) {
     console.error('Erro ao buscar projetos do GitHub:', error);
+    const githubGrid = document.querySelector('.github-grid');
+    githubGrid.innerHTML = `<div class="project-card github-card">
+      <h3>Erro ao carregar repositórios</h3>
+      <p>${error.message || 'Não foi possível carregar os repositórios do GitHub.'}</p>
+    </div>`;
   }
 }
 
