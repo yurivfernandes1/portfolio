@@ -143,44 +143,34 @@ tabBtns.forEach(btn => {
   });
 });
 
-// Carregar token do GitHub do arquivo .env
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    // Em ambiente de produção, você pode usar variáveis de ambiente do servidor
-    // Para ambiente de desenvolvimento, podemos ler o arquivo .env diretamente
-    const response = await fetch('/.env');
-    if (response.ok) {
-      const text = await response.text();
-      // Extrair o token do arquivo .env
-      const match = text.match(/GITHUB_TOKEN=([^\s]+)/);
-      if (match && match[1]) {
-        const token = match[1].trim();
-        // Armazenar no localStorage para uso posterior
-        localStorage.setItem('GITHUB_TOKEN', token);
-        console.log('Token do GitHub carregado com sucesso');
-      }
-    }
-  } catch (error) {
-    console.error('Não foi possível carregar o token do GitHub:', error);
-  }
-  
-  // NÃO chamar fetchGitHubProjects aqui para evitar chamadas desnecessárias à API
-});
-
-// Função para carregar o token do GitHub
+// Função para carregar o token do GitHub sem depender do arquivo .env
 async function loadGitHubToken() {
   try {
-    // Em ambiente de produção, usamos a variável de ambiente definida no Vite
+    // Primeiro, tentamos obter do processo (em ambiente de produção)
     if (typeof process !== 'undefined' && process.env && process.env.GITHUB_TOKEN) {
       return process.env.GITHUB_TOKEN;
     }
-    
-    // Tenta buscar o token do localStorage (para desenvolvimento)
-    const token = localStorage.getItem('GITHUB_TOKEN');
-    if (token) return token;
-    
-    // Aviso quando não encontra o token
-    console.warn('Token do GitHub não encontrado. Configure o token para evitar limites de requisição da API.');
+
+    // Se não houver no processo, tentamos obter do localStorage
+    const storedToken = localStorage.getItem('GITHUB_TOKEN');
+    if (storedToken) {
+      console.log('Token do GitHub carregado do localStorage');
+      return storedToken;
+    }
+
+    // Como alternativa, podemos solicitar ao usuário (apenas em ambiente de desenvolvimento)
+    /* 
+    // Descomente caso queira habilitar esta opção
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      const userToken = prompt('Insira seu token GitHub para evitar limites de requisição:');
+      if (userToken) {
+        localStorage.setItem('GITHUB_TOKEN', userToken);
+        return userToken;
+      }
+    }
+    */
+
+    console.warn('Token do GitHub não encontrado. As requisições podem ser limitadas pela API.');
     return null;
   } catch (error) {
     console.error('Erro ao carregar token do GitHub:', error);

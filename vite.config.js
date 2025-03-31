@@ -16,7 +16,11 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
+    fs: {
+      // Permite o acesso ao arquivo .env na raiz do projeto
+      allow: ['.']
+    }
   },
   optimizeDeps: {
     include: ['gsap']
