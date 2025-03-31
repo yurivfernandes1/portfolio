@@ -576,3 +576,62 @@ a, button {
         width: 100%;
     }
 }
+
+.projects-subtitle {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.github-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.github-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.github-card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.github-lang {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #aaa;
+}
+
+.lang-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.lang-color.python {
+    background: #3572A5;
+}
+
+.lang-color.js {
+    background: #f1e05a;
+}
+
+@media (max-width: 968px) {
+    .github-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .github-grid {
+        grid-template-columns: 1fr;
+    }
+}
