@@ -237,7 +237,7 @@ section h2::after {
 
 .social-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem; /* Reduzido de 1rem para 0.5rem para aproximar os ícones */
     justify-content: center;
     margin-top: 2rem;
     flex-wrap: wrap;
@@ -294,50 +294,69 @@ section h2::after {
 .social-links a i {
     transition: all 0.3s ease;
 }
+
+/* Estilos para os ícones de redes sociais na header e hero */
+.header-social a,
+.social-links a {
+  color: var(--text);
+  font-size: 1.5rem;
+  margin-left: 0.5rem; /* Espaçamento reduzido entre os ícones */
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  border: none !important;
+  padding: 0.3rem;
+  text-decoration: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.header-social a:hover,
+.social-links a:hover {
+  color: #00BFFF !important; /* Azul ciano - forçado com !important */
+  background: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+/* Sobrescrever qualquer comportamento de hover anterior nos ícones */
+.social-links a:hover i {
+  color: #00BFFF !important; /* Azul ciano */
+  transform: none !important;
+}
+
+/* Remover todos os estilos anteriores dos ícones */
+.header-social a::before,
+.social-links a::before,
+.header-social a::after,
+.social-links a::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+/* Resetar valores específicos para garantir que não haja mais círculos */
+.header-social a,
+.social-links a {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* Ajuste para os contêineres dos ícones */
 .header-social {
-    display: flex;
-    gap: 1.2rem;
-}
-
-.header-social a {
-    color: var(--text);
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    border: 1px solid var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-social a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: var(--primary);
-    transition: all 0.3s ease;
-    z-index: -1;
-}
-
-.header-social a:hover::before {
-    width: 100%;
-}
-
-.header-social a:hover {
-    color: var(--background);
-    transform: translateY(0);
-    text-shadow: none;
-}
-
-.header-social a:hover i {
-    transform: scale(1.1);
+  display: flex;
+  gap: 0.2rem; /* Reduzido de 0.3rem para 0.2rem para aproximar mais os ícones */
 }
 
 .projects-grid {
@@ -868,118 +887,48 @@ a, button {
     }
 }
 
-/* Estilos para a seção de habilidades técnicas */
+/* Estilos para seção de skills */
+#skills {
+  padding: 80px 20px;
+}
+
 .skills-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    width: 100%;
-    margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .skill-card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 1.5rem;
-    transition: all 0.4s ease;
-    border: 1px solid rgba(0, 207, 213, 0.1);
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: transform, opacity;
-}
-
-.skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 0;
-    background: var(--primary);
-    transition: height 0.4s ease;
-}
-
-.skill-card:hover::before {
-    height: 100%;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-glow);
-    backdrop-filter: blur(5px);
-    background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .skill-card h3 {
-    color: var(--primary);
-    margin-bottom: 1.2rem;
-    font-size: 1.4rem;
-    position: relative;
-    display: inline-block;
-}
-
-.skill-card h3::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-}
-
-.skill-card:hover h3::after {
-    width: 100%;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--primary);
 }
 
 .skill-bar {
-    width: 100%;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  height: 10px;
+  overflow: hidden;
 }
 
 .skill-level {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-glow) 100%);
-    border-radius: 5px;
-    position: relative;
-    transition: width 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-}
-
-.skill-level::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 8px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary-glow);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.5;
-    }
-}
-
-@media (max-width: 768px) {
-    .skills-container {
-        grid-template-columns: 1fr;
-    }
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, #00BFFF 100%);
+  border-radius: 5px;
+  transition: width 1.5s ease-out;
 }

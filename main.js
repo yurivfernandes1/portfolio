@@ -1,3 +1,6 @@
+// Registrar o plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
 // Garantir que todos os elementos estejam visíveis por padrão
 document.addEventListener('DOMContentLoaded', () => {
   gsap.set('body', { visibility: 'visible' });
@@ -200,6 +203,10 @@ function setupSkillsAnimations() {
     const skillLevel = card.querySelector('.skill-level');
     const widthValue = skillLevel.style.width;
     
+    // Armazenar o valor original da largura
+    const originalWidth = widthValue;
+    
+    // Iniciar com largura zero
     gsap.set(skillLevel, { width: 0 });
     
     ScrollTrigger.create({
@@ -208,7 +215,7 @@ function setupSkillsAnimations() {
       once: true,
       onEnter: () => {
         gsap.to(skillLevel, {
-          width: widthValue,
+          width: originalWidth,
           duration: 1.5,
           ease: 'power2.out'
         });
@@ -283,6 +290,19 @@ function setupAnimations() {
 
   // Adicionar animações para a seção de habilidades técnicas
   setupSkillsAnimations();
+  
+  // Configurar animações iniciais para as barras de skills caso a página carregue diretamente nessa seção
+  if (window.location.hash === '#skills') {
+    setTimeout(() => {
+      document.querySelectorAll('.skill-card .skill-level').forEach(skillLevel => {
+        const originalWidth = skillLevel.style.width;
+        gsap.fromTo(skillLevel, 
+          { width: 0 }, 
+          { width: originalWidth, duration: 1.5, ease: 'power2.out' }
+        );
+      });
+    }, 500);
+  }
   
   // Projetos - animação baseada em scroll
   ScrollTrigger.batch('.project-card', {

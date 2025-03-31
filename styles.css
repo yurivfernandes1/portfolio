@@ -1,0 +1,40 @@
+/* Estilo para os ícones de redes sociais na header */
+.header-social a,
+.hero-social a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  padding: 0;
+  text-decoration: none;
+}
+
+.header-social a:hover,
+.hero-social a:hover {
+  color: #00BFFF; /* Azul ciano */
+  background: none;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Remove estilos antigos que adicionavam círculos aos ícones */
+.header-social a i,
+.hero-social a i {
+  transition: color 0.3s ease;
+}
+
+/* Certifique-se de que não haja círculos ou outras decorações nos ícones */
+.header-social a::before,
+.hero-social a::before,
+.header-social a::after,
+.hero-social a::after {
+  display: none;
+}
