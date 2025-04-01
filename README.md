@@ -11,7 +11,7 @@ Este portfólio é uma aplicação web desenvolvida com HTML, CSS e JavaScript, 
 
 ### 🌟 Demonstração
 
-Visite [yurifernandes.com.br](https://yurifernandes.com.br) para ver o portfólio em ação.
+Visite [yurivf.com.br](https://yurivf.com.br) para ver o portfólio em ação.
 
 ## 🚀 Tecnologias Utilizadas
 
