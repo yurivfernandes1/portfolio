@@ -678,3 +678,81 @@ socialLinks.forEach(link => {
     }
   });
 });
+
+// Adicionar no início do arquivo, após as importações existentes
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Verifica o tema salvo ou usa a preferência do sistema
+    const savedTheme = localStorage.getItem('theme');
+    const currentTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
+    
+    // Aplica o tema inicial
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    updateGitHubStats(currentTheme); // Adicionar esta linha
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+}
+
+function updateThemeIcon(theme) {
+    const themeToggle = document.getElementById('theme-toggle');
+    const icon = themeToggle.querySelector('i');
+    
+    if (theme === 'dark') {
+        icon.className = 'fas fa-moon';
+        updateGitHubStats('dark');
+    } else {
+        icon.className = 'fas fa-sun';
+        updateGitHubStats('light');
+    }
+}
+
+function updateGitHubStats(theme) {
+    const isDark = theme === 'dark';
+    const username = 'yurivfernandes';
+    
+    // Cores para cada tema
+    const colors = isDark ? {
+        bg: '0D1117',
+        text: '00cfd5',
+        icon: '00cfd5',
+        theme: 'react'
+    } : {
+        bg: 'ffffff',
+        text: '0097a7',
+        icon: '0097a7',
+        theme: 'transparent'  // Mudado de 'default' para 'transparent'
+    };
+    
+    // Atualizar as URLs das imagens
+    const statsCard = document.querySelector('.github-stats-card:nth-child(1) img');
+    const streakCard = document.querySelector('.github-stats-card:nth-child(2) img');
+    const langsCard = document.querySelector('.github-stats-card:nth-child(3) img');
+    
+    if (statsCard) {
+        statsCard.src = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=${colors.theme}&hide_border=true&include_all_commits=true&count_private=true&text_color=${colors.text}&icon_color=${colors.icon}&bg_color=${colors.bg}&title_color=${colors.text}`;
+    }
+    
+    if (streakCard) {
+        streakCard.src = `https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=${isDark ? 'react' : 'default'}&hide_border=true&background=${colors.bg}&stroke=${colors.text}&ring=${colors.text}&fire=${colors.text}&currStreakNum=${colors.text}&sideNums=${colors.text}&currStreakLabel=${colors.text}&sideLabels=${colors.text}&dates=888888`;
+    }
+    
+    if (langsCard) {
+        langsCard.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=${colors.theme}&hide_border=true&text_color=${colors.text}&icon_color=${colors.icon}&bg_color=${colors.bg}&title_color=${colors.text}`;
+    }
+}
+
+// Adicionar a chamada da função no evento DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupThemeToggle();
+    // ...existing code...
+});

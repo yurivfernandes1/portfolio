@@ -8,6 +8,16 @@
     --text-primary: #e0e0e0;
 }
 
+[data-theme="light"] {
+    --primary: #0097a7;
+    --primary-glow: rgba(0, 151, 167, 0.5);
+    --text: #333333;
+    --background: #ffffff;
+    --card-bg: rgba(0, 0, 0, 0.05);
+    --bg-secondary: #f5f5f5;
+    --text-primary: #444444;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -55,6 +65,12 @@ nav {
     border-bottom: 1px solid rgba(0, 207, 213, 0.2);
 }
 
+/* Ajustes do header para tema claro */
+[data-theme="light"] nav {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(0, 151, 167, 0.2);
+}
+
 .nav-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -78,6 +94,13 @@ nav a {
     transition: all 0.3s ease;
     position: relative;
     padding: 0.3rem 0;
+}
+
+/* Ajuste para links do header em tema claro */
+[data-theme="light"] nav a,
+[data-theme="light"] .header-social a,
+[data-theme="light"] .theme-toggle {
+    color: var(--text);
 }
 
 nav a::after {
@@ -235,6 +258,16 @@ section h2::after {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     color: #ccc;
+}
+
+/* Ajuste para garantir visibilidade do header em ambos os temas */
+nav {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--primary);
+}
+
+[data-theme="dark"] nav {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .social-links {
@@ -474,6 +507,12 @@ section h2, .project-card, .experience-photo, .experience-item, .contact-info {
     margin-bottom: 1.5rem;
     line-height: 1.6;
     color: #ddd;
+}
+
+/* Ajuste para cards no tema claro */
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .experience-item:hover {
+    background: rgba(0, 0, 0, 0.03);
 }
 
 .project-card a {
@@ -970,13 +1009,14 @@ a, button {
 }
 
 .github-stats-card img {
-  width: 100%;
-  border-radius: 5px;
-  transition: transform 0.5s ease;
+    width: 100%;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.github-stats-card:hover img {
-  transform: scale(1.02);
+[data-theme="light"] .github-stats-card {
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 151, 167, 0.1);
 }
 
 /* Ajustes responsivos para celulares */
@@ -1080,10 +1120,87 @@ footer {
     transform: translateY(-3px);
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.theme-toggle:hover {
+    color: var(--primary);
+}
+
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
+}
+
+/* Ajustes nas cores do tema claro para melhor visibilidade */
+[data-theme="light"] .project-card p,
+[data-theme="light"] .experience-item p,
+[data-theme="light"] .about-text p {
+    color: #555555;
+}
+
+[data-theme="light"] .github-lang {
+    color: #666666;
+}
+
+[data-theme="light"] .experience-item .role {
+    color: #666666;
+}
+
+[data-theme="light"] .hero p {
+    color: #555555;
+}
+
+/* Ajustes adicionais para garantir boa legibilidade em tema claro */
+body {
+    color: #333;
+}
+
+[data-theme="light"] nav {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="light"] nav a,
+[data-theme="light"] .header-social a,
+[data-theme="light"] .theme-toggle {
+    color: #333;
+}
+
+[data-theme="light"] nav a:hover,
+[data-theme="light"] .header-social a:hover,
+[data-theme="light"] .theme-toggle:hover {
+    color: #0097a7;
+}
+
+[data-theme="light"] .project-card {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] .github-stats {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] footer {
+    background-color: #f9f9f9;
+}
+
+[data-theme="light"] .footer-social a {
+    color: #333;
+}
+
+[data-theme="light"] .footer-social a:hover {
+    color: #0097a7;
 }
