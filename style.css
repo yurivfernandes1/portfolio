@@ -4,6 +4,8 @@
     --text: #ffffff;
     --background: #000000;
     --card-bg: rgba(255, 255, 255, 0.05);
+    --bg-secondary: #111111;
+    --text-primary: #e0e0e0;
 }
 
 * {
@@ -1033,4 +1035,55 @@ a, button {
   .github-stats-card {
     padding: 0.7rem;
   }
+}
+
+footer {
+    background-color: var(--bg-secondary);
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-social a {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--primary);
+}
+
+.back-to-top {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
 }
