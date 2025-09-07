@@ -12,7 +12,7 @@
 
 Sou um Analista de Dados apaixonado por transformar dados em insights valiosos para os negócios. Com mais de 4 anos de experiência em análise de dados, atualmente faço parte do time da Vivo Vita, onde trabalho com projetos de análise e engenharia de dados que impactam diretamente a tomada de decisão estratégica da empresa.
 
-Com formação em Sistemas de Informação pela Universidade UNA (2021), pós graduando em Engenharia de Dados pela Anhanguera e certificação Power BI Express pela Xperian, combino habilidades técnicas sólidas com uma forte compreensão de negócios. Além disso, tenho experiência em trabalhar com GitHub Copilot, Edit, Agent e Chat para desenvolvimento de aplicações em qualquer linguagem.
+Com formação em Sistemas de Informação pela Universidade UNA (2021), pós graduado em Engenharia de Dados pela Anhanguera (2025) e certificação Power BI Express pela Xperian, combino habilidades técnicas sólidas com uma forte compreensão de negócios. Além disso, tenho experiência em trabalhar com GitHub Copilot, Edit, Agent e Chat para desenvolvimento de aplicações em qualquer linguagem.
 
 ## 🎯 Experiência Profissional
 
