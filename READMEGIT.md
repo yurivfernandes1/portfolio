@@ -86,13 +86,13 @@ Líder de equipe de Service Desk entre 2011 e 2014, gerenciando equipes e proces
 ## 📊 GitHub Stats
 
 <div align="center">
-  <a href="https://github.com/yurivfernandes">
-    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=yurivfernandes&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
-    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yurivfernandes&layout=compact&langs_count=7&theme=dracula"/>
+  <a href="https://github.com/yurivfernandes1">
+    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=yurivfernandes1&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
+    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yurivfernandes1&layout=compact&langs_count=7&theme=dracula"/>
   </a>
   
-  ![](https://komarev.com/ghpvc/?username=yurivfernandes&color=blueviolet)
-  [![GitHub yurivfernandes](https://img.shields.io/github/followers/yurivfernandes?label=follow&style=social)](https://github.com/yurivfernandes)
+  ![](https://komarev.com/ghpvc/?username=yurivfernandes1&color=blueviolet)
+  [![GitHub yurivfernandes1](https://img.shields.io/github/followers/yurivfernandes1?label=follow&style=social)](https://github.com/yurivfernandes1)
 </div>
 
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=4B0082&height=120&section=footer"/>

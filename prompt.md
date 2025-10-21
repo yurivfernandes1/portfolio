@@ -49,12 +49,12 @@ portfolio/
    - Links redes sociais
    - WhatsApp e telefone
 
-link foto perfil: https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/fotos/hero.jpeg
-link foto 2: https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/fotos/hero2.jpeg
-link foto 3: https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/fotos/interagindo.jpeg
+link foto perfil: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/fotos/hero.jpeg
+link foto 2: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/fotos/hero2.jpeg
+link foto 3: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/fotos/interagindo.jpeg
 
-MEU GITHUB: https://github.com/yurivfernandes/
-MEU INSTAGRAM: https://www.instagram.com/yurivfernandes/
+MEU GITHUB: https://github.com/yurivfernandes1/
+MEU INSTAGRAM: https://www.instagram.com/yurivfernandes1/
 MEU LINKEDIN: https://www.linkedin.com/in/yurianalistabi/
 MEU WHATSAPP: https://wa.me/5531987798823
 MEU TELEFONE: (31)98779-8823
@@ -82,6 +82,6 @@ Além disso, o relatório oferece insights valiosos sobre a equipe, apresentando
 
 A versatilidade desse dashboard completo possibilita uma série de análises profundas, culminando em decisões estratégicas fundamentadas. Destacamos um caso em que a análise detalhada dos relatórios revelou a necessidade de mais técnicos de nível 2 do que de nível 1 em determinado período, otimizando recursos e melhorando a eficiência operacional. Importante mencionar que os dados dos clientes foram ocultados para preservar a confidencialidade, e o relatório está disponível na versão mobile para acesso fácil e ágil em qualquer lugar.
 
-link imagem projeto1:https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/dashboards/Projeto1.png
-link imagem projeto2: https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/dashboards/Projeto2.png
-link imagem projeto3: https://raw.githubusercontent.com/yurivfernandes/portifolio/refs/heads/main/client/public/dashboards/Projeto3.png
+link imagem projeto1:https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/dashboards/Projeto1.png
+link imagem projeto2: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/dashboards/Projeto2.png
+link imagem projeto3: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/dashboards/Projeto3.png
