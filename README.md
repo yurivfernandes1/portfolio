@@ -1,7 +1,7 @@
 # Portfólio de Yuri Fernandes
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/public/fotos/hero.jpeg" alt="Yuri Fernandes" width="200" style="border-radius: 50%;">
+  <img src="https://raw.githubusercontent.com/yurivfernandes1/portfolio/refs/heads/main/public/fotos/hero.jpeg" alt="Yuri Fernandes" width="200" style="border-radius: 50%;">
   <h3>Engenheiro/Analista de Dados & Desenvolvedor Full Stack</h3>
 </div>
 
