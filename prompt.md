@@ -54,7 +54,7 @@ link foto 2: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/h
 link foto 3: https://raw.githubusercontent.com/yurivfernandes1/portifolio/refs/heads/main/client/public/fotos/interagindo.jpeg
 
 MEU GITHUB: https://github.com/yurivfernandes1/
-MEU INSTAGRAM: https://www.instagram.com/yurivfernandes1/
+MEU INSTAGRAM: https://www.instagram.com/yurivfernandes/
 MEU LINKEDIN: https://www.linkedin.com/in/yurianalistabi/
 MEU WHATSAPP: https://wa.me/5531987798823
 MEU TELEFONE: (31)98779-8823
